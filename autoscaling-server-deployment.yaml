@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: autoscaling-server-deployment
-        image: tndyd5390/autoscaling-server
+        image: tndyd5390/autoscaling-server:0.1
         imagePullPolicy: Always
         resources:
           limits:
