@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autoscaling-server-deployment
+  labels:
+    app: autoscaling-server-deployment
+  # annotations:
+    # kubernetes.io/change-cause: version 1.10.1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: autoscaling-server-deployment
+  template:
+    metadata:
+      labels:
+        app: autoscaling-server-deployment
+    spec:
+      containers:
+      - name: autoscaling-server-deployment
+        image: tndyd5390/autoscaling-server
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /liveness
+            port: 8080
+        readinessProbe:
+          httpGet:
+            path: /readiness
+            port: 8080
+      terminationGracePeriodSeconds: 10
