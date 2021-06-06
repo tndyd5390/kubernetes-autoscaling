@@ -4,8 +4,6 @@ metadata:
   name: autoscaling-server-deployment
   labels:
     app: autoscaling-server-deployment
-  # annotations:
-    # kubernetes.io/change-cause: version 1.10.1
 spec:
   replicas: 1
   selector:
